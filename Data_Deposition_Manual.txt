@@ -1,0 +1,95 @@
+# This is to record Data deposition process for GEO and dbGAP 
+# August 2023 Hyomin Seo
+
+#################################### GEO #######################################
+1. Make GEO Account : https://www.ncbi.nlm.nih.gov/geo/
+2. Make a submission :  has to add information like title, organism, experiment type... 
+   Finishing this submission will give you the access code for your personal FTP upload
+3. Acqiure Metadata_template.xlsx from GEO website 
+4. Fill in all neccessary information on Metadata_template.xlsx, supplementary files         
+should be Metadata.txt, Raw_counts.txt, Raw_TPM.txt.
+5. Make a folder in a local machine ( or minerva ) ex. upload_folder where you put your 
+   Metadata.txt, Raw_counts.txt, Raw_TPM.txt, and completed Metadata_template.xlsx
+6. Once all txt files and template-sheet is completed, go back to the page where you can
+   see your FTP upload access information - address, user name, password.
+7. Following the code to upload the files to the FTP server
+
+```
+## If local machine or minerva do not have FTP installed 
+brew install inetutils
+brew install ncftp
+```
+
+From the 'upload_folder''s terminal where you have all your files, 
+
+```
+on local , 
+ftp -i
+open ftp-private.ncbi.nlm.nih.gov
+### Type your username from the access information page ( geoftp is username)
+geoftp
+### Type your passcode from the access information page ( inAlwokhodAbnib5 is passcode)
+inAlwokhodAbnib5
+
+or, if minvera 
+sftp geoftp@sftp-private.ncbi.nlm.nih.gov (geoftp is the username))
+### Type your passcode from the access information page ( inAlwokhodAbnib5 is passcode)
+inAlwokhodAbnib5
+### in Minerva, just type the passcode directly 
+```
+
+```
+# Navigate to your upload directory
+cd uplaods
+# Navigate to your personal upload directory from access information page
+# (floraseo1124@gmail.com_4fOrKMqe is a personal upload folder)
+cd floraseo1124@gmail.com_4fOrKMqe
+# upload all files in the current directory up to the submission folder 
+mput *
+# doing this will upload all files in your present local folder to your personal upload folder in FTP server
+
+# Quittig
+quit 
+```
+
+##### Example upload-complete message #####
+# Complete message
+local: Metadata.txt remote: Metadata.txt
+200 PORT command successful
+##### Example upload-complete message #####
+
+Receiving an email from GEO with the following content 
+#####
+* You may view your GSE240907 study at:
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE240907
+#####
+Means that you hve successfully uploaded data to GEO 
+#################################### GEO #######################################
+
+
+#################################### dbGAP #####################################
+Assumption: you are adding/ fixing the already-submitted study's data, not starting a new study
+#################################### dbGAP #####################################
+1. Make an account on dbGAP/ or get your PI to get you to the study's dbGAP portal as submitter/ manager
+2. Get Invitation from dbGAP via Email that contains login access 
+3. Submit a questionnaire regarding the data you are trying to uploade/add/fix
+4. If you are added to the study as 'manager', you can download all previous dbGAP submission files by doing the following
+
+``` 
+1. Study Actions : drop down menu 'download submitted phenotype files'
+2. Wait until they send you seperate email for downloading the file
+3. Meanwhile, download gpgtool on the local machine following
+# Mac users - Download GPGtool binary for OSX here: https://gpgtools.org/
+4. When email arrives, you should be able to get gz file of the submitted files
+```
+
+4. To keep track of what is updated and what is original, I recommend making a seperate folder, because the file names themselves should not be changed. 
+5. Add/ fix data in file 2a, 3a, 5a, 6a, and add/ fix data in excel 5b and 6b (if you add a new variable in 'a' files, they must be reflected in the 'b' excel files in words)
+6. Once all files are updated, go back to submission portal of the study, where you will 'replace' the files (2a,3a,5a,6a, (if needed, 5b and 6b)) and 'submit' 
+7. Once submission is approved by dbGAP, they will send you a metadat spreadsheet to fill out for newly added/ updated samples. 
+
+
+
+
+
+
